@@ -1,6 +1,8 @@
+require 'pry'
 require_relative 'config/environment'
 
-require_relative 'models/piglatinizer.rb'
+
+
 
 class App < Sinatra::Base
   
@@ -9,8 +11,15 @@ class App < Sinatra::Base
 end
 
   post '/piglatinize' do
-      @user_phrase = PigLatinizer.new(params[:user_phrase])
+
+   #  @user_phrase = PigLatinizer.piglatinize(params[:user_phrase])
+   ins = PigLatinizer.new #creating a new instance of piglatin model
+   @user_phrase = ins.piglatinize(params[:user_phrase]) #using piglatin instance method on ins
  erb :results
+
   end	  
 
 end 
+
+#userphrase = piglatinize(params[:user_phrase]) works too but it prob shouldnt
+
